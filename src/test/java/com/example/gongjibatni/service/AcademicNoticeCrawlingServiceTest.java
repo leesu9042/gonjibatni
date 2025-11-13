@@ -2,12 +2,11 @@ package com.example.gongjibatni.service;
 
 import com.example.gongjibatni.crawling.service.AcademicNoticeCrawlingService;
 import com.example.gongjibatni.notice.domain.Notice;
-import com.example.gongjibatni.repository.NoticeRepository;
+import com.example.gongjibatni.notice.repository.NoticeRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 

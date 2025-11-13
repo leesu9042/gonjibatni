@@ -1,4 +1,4 @@
-package com.example.gongjibatni.repository;
+package com.example.gongjibatni.notice.repository;
 
 import com.example.gongjibatni.notice.domain.Notice;
 

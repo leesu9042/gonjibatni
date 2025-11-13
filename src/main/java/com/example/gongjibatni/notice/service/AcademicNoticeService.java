@@ -1,7 +1,7 @@
 package com.example.gongjibatni.notice.service;
 
 import com.example.gongjibatni.notice.domain.Notice;
-import com.example.gongjibatni.repository.NoticeRepository;
+import com.example.gongjibatni.notice.repository.NoticeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.OffsetScrollPosition;
 import org.springframework.data.domain.ScrollPosition;
@@ -24,8 +24,8 @@ public class AcademicNoticeService {
     //repository 주입
 
 
-    //공지 처음 page가져오기
-    public List<Notice> getNoticeFirstPage() {
+    //공지 처음 window가져오기
+    public Window<Notice> getNoticeFirstwindow() {
 
         //오프셋 포지션 0으로 설정
         OffsetScrollPosition offset = ScrollPosition.offset();
@@ -34,21 +34,16 @@ public class AcademicNoticeService {
         //그래서 이부분을 함수를 외부에서 가져와서 실행하는 느낌으로 하는것 고려
 
 
-        //첫 Notice 10개받아오기
-        //notice객체 넣을 list
-        List<Notice> noticeList = new ArrayList<>();
-        //list에 넣기
-        noticeWindow.forEach(noticeList::add);
 
-        return noticeList;
+        return noticeWindow;
     }
 
 
 
     // 공지 window로 다음 page 가져오기
-    public List<Notice> getNoticeNextPage(Window<Notice> noticeWindow) {
+    public Window<Notice> getNoticeNextwindow(Window<Notice> noticeWindow) {
         if (noticeWindow.isEmpty() && !noticeWindow.hasNext()) {
-            return Collections.emptyList(); //더 이상 데이터가 없다.
+            return Window.from(Collections.emptyList(), ScrollPosition::offset);
         }
 
         // 다음 window 가져오기
@@ -59,11 +54,18 @@ public class AcademicNoticeService {
         // window.positionAt(9) Window 안의 9번째 요소를 기준으로 다음 위치를 만든다.
 
 
-        //notice객체 넣을 list
-        List<Notice> noticeList = new ArrayList<>();
-        //list에 넣기
-        nextNoticeWinodw.forEach(noticeList::add);
-        return noticeList;
+        return nextNoticeWinodw;
+    }
+
+    
+    //Window를 list로 변환 함수
+    public List<Notice> windowToList(Window<Notice> noticeWindow) {
+        
+        ArrayList<Notice> resultList = new ArrayList<>();
+        noticeWindow.forEach(resultList::add);
+
+
+        return resultList;
     }
 
 

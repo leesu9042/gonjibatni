@@ -4,7 +4,7 @@ package com.example.gongjibatni.crawling.service;
 
 import com.example.gongjibatni.crawling.AcademicNoticeCrawler;
 import com.example.gongjibatni.notice.domain.Notice;
-import com.example.gongjibatni.repository.NoticeRepository;
+import com.example.gongjibatni.notice.repository.NoticeRepository;
 import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
