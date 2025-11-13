@@ -13,6 +13,8 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 @SpringBootTest
 class AcademicNoticeServiceTest {
 
@@ -32,15 +34,17 @@ class AcademicNoticeServiceTest {
 //        firstNoticesWindow.forEach(firstNotices::add);
 
 
-        List<Notice> firstNotices = academicNoticeService.windowToList(firstNoticesWindow);
+//        List<Notice> firstNotices = academicNoticeService.windowToList(firstNoticesWindow);
 
-
+        List<Notice> firstNotices = firstNoticesWindow.getContent();
         List<Notice> nextNotices = academicNoticeService.windowToList(NextNoticesWindow);
 //        ArrayList<Notice> nextNotices = new ArrayList<>();
 //        NextNoticesWindow.forEach(nextNotices::add);
 
 
         Assertions.assertNotNull(firstNotices);
+        assertThat(firstNotices.size()).isEqualTo(10);
+        //ㄹㅇ 10개 가져오나?
         Assertions.assertNotNull(nextNotices);
 
         System.out.println("===== NOTICE 출력 =====");
