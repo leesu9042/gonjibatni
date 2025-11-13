@@ -1,0 +1,28 @@
+package com.example.gongjibatni.repository;
+
+import com.example.gongjibatni.notice.domain.Notice;
+
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.ScrollPosition;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.Window;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public interface NoticeRepository extends JpaRepository<Notice,Long> {
+
+    List<Notice> findByCategoryKeyword(String categoryKeyword);
+
+    Slice<Notice> findAllBy(Pageable pageable);
+    // 그냥 slice로 오프셋써서 Notice 가져오기
+
+    Window<Notice> findFirst10ByOrderByNoticeNoDesc(ScrollPosition position);
+    //key-set-based 윈도우 방식
+
+
+
+
+}
