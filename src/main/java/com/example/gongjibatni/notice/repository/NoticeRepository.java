@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface NoticeRepository extends JpaRepository<Notice,Long> {
@@ -22,6 +23,8 @@ public interface NoticeRepository extends JpaRepository<Notice,Long> {
     Window<Notice> findFirst10ByOrderByNoticeNoDesc(ScrollPosition position);
     //key-set-based 윈도우 방식
 
+    Optional<Notice> findTopByOrderByNoticeNoDesc();
+    // NoticeNo 가장높은거 가져오기 optional로
 
 
 
