@@ -16,6 +16,7 @@ public class NoticeUtils {
 
         // 기본 URL — 실제 사용하는 시스템 주소에 맞게 수정하세요
         String baseUrl = "https://hanbat.ac.kr/bbs/BBSMSTR_000000000050/view.do?nttId=";
+        // 얘도 enum으로 뺍시다
 
         // bbs/BBSMSTR_000000000050/view.do -> action
 
