@@ -14,7 +14,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-//크롤링 해서 rows 리턴
+//html 크롤링 해서 rows 리턴
 
 @Component   // 스프링이 자동으로 Bean 등록
 public class AcademicNoticeCrawler implements NoticeCrawler{
