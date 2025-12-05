@@ -36,7 +36,7 @@ public class AcademicNoticeCrawlingService implements CrawlingService{
     public void crawlAndSave(String url) {
         Document doc = academicNoticeCrawler.LoadFromURL(url);
         List<Notice> notices = academicNoticeCrawler.parsingElementsToNotices(doc);
-        List<Notice> newNotices = noticeSyncService.filterNewAcademicNotices(notices); //필터링
+        List<Notice> newNotices = noticeSyncService.filterNewAcademicNotices(notices); // 최신것만 필터링
 
         if(newNotices.isEmpty()) {
             return;
