@@ -6,6 +6,7 @@ import com.example.gongjibatni.crawling.AcademicNoticeCrawler;
 import com.example.gongjibatni.notice.domain.Notice;
 import com.example.gongjibatni.notice.repository.NoticeRepository;
 import org.jsoup.nodes.Document;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,7 +40,7 @@ public class AcademicNoticeCrawlingService implements CrawlingService{
         List<Notice> newNotices = noticeSyncService.filterNewAcademicNotices(notices); // 최신것만 필터링
 
         if(newNotices.isEmpty()) {
-            return;
+
         }
         else {
             noticeRepository.saveAll(newNotices);
