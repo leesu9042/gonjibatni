@@ -3,16 +3,12 @@ package com.example.gongjibatni.notice.service;
 import com.example.gongjibatni.notice.domain.Notice;
 import com.example.gongjibatni.notice.repository.NoticeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.KeysetScrollPosition;
-import org.springframework.data.domain.OffsetScrollPosition;
 import org.springframework.data.domain.ScrollPosition;
 import org.springframework.data.domain.Window;
-import org.springframework.data.support.WindowIterator;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 
 
@@ -31,9 +27,11 @@ public class AcademicNoticeService {
 
 
     // 처음스크롤 위치 가진 공지 window들가져오기
-    //이걸가지고 hasNext() , next()메소드를 쓰면 된다.
+
 
     // 첫 번째 페이지
+    // 캐싱방식 적용
+    @Cacheable(cacheNames = "academicNotice", key = "'firstWindow'")
     public Window<Notice> getFirstWindow() {
         return noticeRepository.findFirst10ByOrderByNoticeNoDesc(
                 ScrollPosition.keyset()
@@ -51,4 +49,12 @@ public class AcademicNoticeService {
 
         return noticeRepository.findFirst10ByOrderByNoticeNoDesc(position);
     }
+
+
+    //  캐시 무효화 메서드
+    @CacheEvict(cacheNames = "academicNotice", key = "'firstWindow'")
+    public void evictFirstWindowCache() {
+        return;
+    }
+
 }
