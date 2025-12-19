@@ -1,4 +1,4 @@
-package com.example.gongjibatni.crawling;
+package com.example.gongjibatni.crawling.parser;
 
 import com.example.gongjibatni.notice.domain.Notice;
 import org.jsoup.nodes.Document;

@@ -1,6 +1,6 @@
 package com.example.gongjibatni.crawling.service;
 
-import com.example.gongjibatni.crawling.AcademicNoticeCrawler;
+import com.example.gongjibatni.crawling.parser.AcademicNoticeCrawler;
 import com.example.gongjibatni.notice.domain.Notice;
 import com.example.gongjibatni.notice.repository.NoticeRepository;
 import org.jsoup.nodes.Document;
@@ -10,7 +10,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
 import java.util.Arrays;
