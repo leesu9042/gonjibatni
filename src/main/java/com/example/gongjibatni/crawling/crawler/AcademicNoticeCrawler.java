@@ -1,4 +1,4 @@
-package com.example.gongjibatni.crawling.parser;
+package com.example.gongjibatni.crawling.crawler;
 
 import com.example.gongjibatni.notice.domain.Notice;
 import org.jsoup.Jsoup;
@@ -27,15 +27,24 @@ public class AcademicNoticeCrawler implements NoticeCrawler{
 
     public Document LoadFromURL(String url) {
         try {
-            return Jsoup.connect(url).get();
-
+            return Jsoup.connect(url)
+                    .timeout(15000)
+                    .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
+                    .get();
         } catch (IOException e) {
-            // 연결 끊기면 에러처리 + null 반환
-            System.out.println(" Connection error: " + e.getMessage()); //이것도 바꿔야함
+            System.out.println("Connection error: " + e.getMessage());
             return null;
         }
-
     }
+
+    // page와 함께 호출하는 경우
+    public Document LoadFromURL(String url, int pageNo) {
+        String combinedUrl = url + "?pageIndex=" + pageNo;
+        return LoadFromURL(combinedUrl);  // 위 메서드 재사용
+    }
+
+
+
     /**
      * HTML Document에서 공지사항 정보를 추출하여 Notice 객체 리스트로 변환
      * <p>파싱 대상:
@@ -112,7 +121,6 @@ public class AcademicNoticeCrawler implements NoticeCrawler{
 
         return "";
     }
-
 
 
 
