@@ -1,9 +1,11 @@
 package com.example.gongjibatni.notice.domain;
 
+import com.example.gongjibatni.classifier.Tag.NoticeTag;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -13,7 +15,6 @@ import java.time.LocalDate;
         }
 ) //인덱스 생성
 public class Notice {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,6 +32,19 @@ public class Notice {
 
     @Column(name = "category_keyword")
     private String categoryKeyword;
+
+
+    // 태그들 (ElementCollection 사용)
+    @ElementCollection(fetch = FetchType.LAZY) //값 타입 컬렉션을 별도 테이블에 매핑해서 저장한다
+    @CollectionTable(
+            name = "notice_tags",
+            joinColumns = @JoinColumn(name = "notice_id")
+    )
+    @Enumerated(EnumType.STRING)//Enum (db에저장시 String)
+    @Column(name = "tag")
+    private Set<NoticeTag> tags = new HashSet<>();
+
+
 
     public Notice() {
 
@@ -97,6 +111,11 @@ public class Notice {
 
     public void setNttid(String nttid) {
         this.nttid = nttid;
+    }
+
+
+    public Set<NoticeTag> getTags() {
+        return tags;
     }
 
 }
