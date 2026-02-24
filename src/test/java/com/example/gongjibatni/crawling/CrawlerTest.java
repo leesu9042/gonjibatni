@@ -1,6 +1,6 @@
 package com.example.gongjibatni.crawling;
 
-import com.example.gongjibatni.crawling.parser.AcademicNoticeCrawler;
+import com.example.gongjibatni.crawling.crawler.AcademicNoticeCrawler;
 import com.example.gongjibatni.notice.domain.Notice;
 import org.jsoup.nodes.Document;
 import org.junit.jupiter.api.Test;
