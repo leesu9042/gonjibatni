@@ -75,7 +75,7 @@ public class AcademicNoticeCrawler implements NoticeCrawler{
 
             //  data-cell-header 속성값으로 구분해서 데이터 추출
             String num = row.select("td[data-cell-header=번호]").text();
-            String title = row.select("td[data-cell-header=제목]").text();
+            String title = row.select("td[data-cell-header=제목] a").text();
             String writer = row.select("td[data-cell-header=작성자]").text();
             String date = row.select("td[data-cell-header=등록일]").text();
 
